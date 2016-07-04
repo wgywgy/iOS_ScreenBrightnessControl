@@ -24,7 +24,7 @@ class GestureView: UIView, UIGestureRecognizerDelegate {
     }
 
     func setup() {
-        vpan = UIPanGestureRecognizer(target: self, action: "vpanAction:")
+        vpan = UIPanGestureRecognizer(target: self, action: #selector(GestureView.vpanAction(_:)))
         vpan.delegate = self
         addGestureRecognizer(vpan)
         self.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]

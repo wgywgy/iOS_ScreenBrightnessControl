@@ -20,7 +20,7 @@ class BrightnessHub: UIView {
             // 亮度块数
             let num = Int(round(brightness * 16))
 
-            for var index = 0; index < 16; ++index {
+            for index in 0 ..< 16 {
                 let aVolView = volViewArray[index]
                 if index < num {
                     aVolView.hidden = false
@@ -34,7 +34,7 @@ class BrightnessHub: UIView {
 
             disMissTimer?.invalidate()
             disMissTimer = nil
-            disMissTimer = NSTimer(timeInterval: 2, target: self, selector: "dismissSelf", userInfo: nil, repeats: false)
+            disMissTimer = NSTimer(timeInterval: 2, target: self, selector: #selector(BrightnessHub.dismissSelf), userInfo: nil, repeats: false)
             NSRunLoop.mainRunLoop().addTimer(disMissTimer!, forMode: NSDefaultRunLoopMode)
         }
     }
@@ -77,7 +77,7 @@ class BrightnessHub: UIView {
         totolVolBgView.alpha = 0.7
         self.addSubview(totolVolBgView)
 
-        for var index = 0; index < 16; ++index {
+        for index in 0 ..< 16 {
             let volView = UIView(frame: CGRect(x: 14 + index * 8, y: 134, width: 7, height: 5))
             volView.backgroundColor = UIColor.whiteColor()
             volView.hidden = true
@@ -85,7 +85,7 @@ class BrightnessHub: UIView {
             self.addSubview(volView)
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationDidChange:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BrightnessHub.orientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
         addToWindow()
     }
 
